@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Madjarska vazbanka</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="ma.css">
+	<!-- <script type="text/javascript" src="reci.js"></script> -->
+	
+<body>
+
+	<h1>Vežbanje reči na srpskom i mađarskom</h1>
+	<div class="row">
+		<div class="col-lg-3 col-md-6 order-2 order-lg-1">
+			<a href='/uputstva'>Pomoc/Uputstva</a>
+			<p><strong>Koje sve reči želite da uključite u igru?</strong></p>
+				<div id='check-div'>
+			<% for (i in allwords){ %>
+				<% var kategorija_=undefined; %>
+				<% const allowed=["pridevi","namirnice","mesta","predlozi_i_prefiksi","prilozi_i_veznici","glagoli","brojevi","imenice","novo","test"]; %>
+				<% if (allowed.includes(allwords[i].category)){ %>
+				<%		if(allwords[i].category==="predlozi_i_prefiksi"){ %>
+				<%			kategorija_="predlozi i prefiksi"	%>
+				<%		}										%>
+				<%		if(allwords[i].category==="prilozi_i_veznici"){   %>
+				<%		 	kategorija_="prilozi i veznici"		%>
+				<%		}										%>
+				<%		if(allwords[i].category==="reci"){		%>
+				<%			kategorija_="ostale vrste reči"		%>
+				<%		}										%>
+		
+				
+						<label for= <%= allwords[i].category %> ><%= kategorija_ || allwords[i].category %></label>
+      					<input type="checkbox" class='boxes' name= <%= allwords[i].category %> id= <%= allwords[i].category %>>
+      					<br>
+					<% } %>
+			<% } %>
+				</div>
+
+			<div id="biranje_jezika">
+				<div><strong>Na kom jeziku želite da pišete odgovore?</strong></div>
+				<label for="srpski">Na madjarskom jeziku</label>
+				<input name="jezik" id="srpski" type="radio" value="srpski" checked>
+				<br>
+				<label for="madjarski">Na srpskom jeziku</label>
+				<input name="jezik" id="madjarski" type="radio" value="madjarski">
+			</div>
+	
+
+		</div>
+		<div class="col-lg-6 col-md-6 order-1 order-lg-2">
+			<div id="kontenjer">
+				<img id='slika' src="">
+				<div id='pit'>
+					<h1 id="word"></h1>
+				</div>
+				<div id="mesto_za_pitanja">
+					<p>Prevod:</p>
+					<input type="text" id="main-input" placeholder="">
+					<button id='check-answer'>Proveri!</button>
+					<button id="next-word" class='btn btn-primary'>Dalje!</button>
+					<br>
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 order-3">
+			<div id="rezultat">
+				<p>Tačni odgovori: <span id='correct-counter'>0</span></p>
+				<div></div>
+				<p>Pogrešni odgovori: <span id='wrong-counter'>0</span></p>
+			</div>
+			<button id="btn-counter">Reset</button>
+			<div>
+				<h3 id="pomoc">Pomoć prvo slovo</h3>
+			</div>
+			<br>
+			<div>Prethodna reč je bila: </div>
+			<div id="last-word"> </div>
+			<a href="/new">Unos nove reči u databazu</a>
+		</div>
+	</div>
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>

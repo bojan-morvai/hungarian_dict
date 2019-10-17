@@ -1,0 +1,83 @@
+body{  background: -webkit-linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CCB16 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CCB16 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CCB16 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CCB16 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CCB16 90%); /* W3C */
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+#next-word{
+    margin-top: 1rem;
+    width: 7rem;
+}
+
+.drugibodi {
+    margin-top: 2rem;
+}
+#uputstva2{
+    margin-top: 1rem;
+}
+
+#kontenjer{
+	width: 300px;
+	height: 300px;
+	margin: 30px auto 30px auto;
+	
+}
+.container{
+    max-width: 800px;
+}
+#mesto_za_pitanja{
+	text-align: center;
+}
+
+#biranje_jezika{
+  margin-top: 1rem;
+}
+
+p{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* .ode */
+.gone{ 
+	display: none;
+}
+
+.dobro{
+	font-size: 40px;
+	color:green;
+}
+.lose{
+	font-size: 40px;
+	color:red;
+}
+
+#pomoc{
+  margin-top: 7rem;
+}
+
+#rezultat{
+  margin-top:20px;
+}
+
+.col-lg-3:nth-of-type(1){
+  margin-bottom: 20px;
+}
+
+label{
+  margin: .1rem;
+}
+
+.row{
+  margin-left: 5px;
+}

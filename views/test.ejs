@@ -1,0 +1,25 @@
+<% for (i in allwords){ %>
+  <% var kategorija_ %>
+  <h1><%=allwords.length%></h1>
+  <% const allowed=["pridevi","namirnice","mesta","predlozi_i_prefiksi","prilozi_i_veznici","glagoli","brojevi","imenice","novo","test"]; %>
+  <% if (allowed.includes(allwords[i].category)){ %>
+  <%		if(allwords[i].category==="predlozi_i_prefiksi"){ %>
+  <%		kategorija_="predlozi i prefiksi"	%>
+  <%		}										%>
+  <%		if(allwords[i].category==="prilozi_i_veznici"){   %>
+  <%		kategorija_="prilozi i veznici"		%>
+  <%		}										%>
+  <%		if(allwords[i].category==="reci"){				%>
+  <%		kategorija_="ostale vrste reči"		%>
+  <%		}										%>
+
+  
+      <label for= <%= allwords[i].category %> ><%= kategorija_ || allwords[i].category %></label>
+          <input type="checkbox" name= <%= allwords[i].category %> id= <%= allwords[i].category %>>
+          <br>
+        <% kategorija_=undefined %>
+    <% } %>
+<% } %>
+    
+  
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Madjarska vazbanka</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="ma.css">
+	
+<body>
+
+<h1>Unos u databazu</h1>
+
+<form action="/new?_method=PUT" method="POST">
+    <label for="kategorija">Kategorija:</label>
+    <select name="kategorija" id="kategorija">
+        <option value="imenice">Imenice</option>
+        <option value="namirnice">Namirnice</option>
+        <option value="test">Test</option>
+        <option value="pridevi">Pridevi</option>
+        <option value="mesta">Mesta</option>
+        <option value="predlozi_i_prefiksi">Predlozi i prefiksi</option>
+    </select>
+    <label for="srpski">Srpski:</label>
+    <input type="text" id='srpski' name='srpski' placeholder="srpski">
+    <label for="madjarski">Madjarski:</label>
+    <input type="text" id='madjarski' name='madjarski' placeholder="madjarski">
+    <input type="submit" value="Submit">
+</form>
+<div class='search-div'>
+    <h3>Pretraga reci u databazi</h3>
+    <label for="search">Srpski:</label>
+    <input type="text" id='search' placeholder="Pretraga na srpskom">
+    <button id='search-btn'>Trazi</button>
+    <br>
+    
+
+</div>
+
+<script type="text/javascript" src="script_update.js"></script>
+</body>
+</html>
