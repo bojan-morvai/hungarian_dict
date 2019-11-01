@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
@@ -49,7 +47,7 @@ app.use(methodOverride("_method"));
 
 app.use(function(req, res, next){
     currentAdmin = req.admin;
-	//console.log("asdasd: "+ currentUser)
+	console.log("asdasd: "+ currentUser)
     next();
 });
 
@@ -82,7 +80,7 @@ app.get("/uputstva", (req, res) =>{
 app.get('/',(req,res) =>{
 	All_words.find({},function(err,allwords){
 		if(err){
-			console.log('Error connecting to db, establishing link to local db...');
+			alert('Error connecting to db, establishing link to local db...');
 			res.render('home',{allwords:Local_words});
 		}else{
 			res.render('home',{allwords});
@@ -93,7 +91,7 @@ app.get('/',(req,res) =>{
 app.get('/get/words',function(req,res){
 	All_words.find({},function(err,allwords){
 		if(err){
-			console.log('Error connecting to db, establishing link to local db...');
+			alert('Error connecting to db, establishing link to local db...');
 			res.send(Local_words);
 		}
 	  res.send(allwords);
@@ -121,20 +119,29 @@ app.put('/new', (req,res)=>{
 				if(err){
 					res.send("ERROR UPDATING")
 				}else{
-					res.redirect('/new')
+					// Need to add word to 'novo' category also
+					All_words.findOne({category:'novo'},function(err,found_novo){
+						if(err){
+							res.send('Error finding "novo" category');
+						}else{
+							found_novo.words.push(new_word)
+							All_words.findOneAndUpdate({category:'novo'},{words:found_novo.words},function(err,up){
+								if(err){
+									res.send('Error updating "novo" category');
+								}else{
+									res.redirect('/new')
+								}
+							});
+						}
+					});
 				}
 			});
 		}
 	});
 });
 
-          
-// madj.listen(process.env.PORT, process.env.IP, function(){
-//    console.log("Server je pokrenut!"); 
-// });
-
-const hostname = process.env.IP; //|| '127.0.0.1';
-const port = process.env.PORT; //|| 3000;
+const hostname = process.env.IP || '127.0.0.1';
+const port = process.env.PORT || 3000;
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
