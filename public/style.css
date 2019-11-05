@@ -8,6 +8,7 @@ body{  background: -webkit-linear-gradient(90deg, #F67248 10%, #F5E4DF 50%, #3CC
 h1{
   text-align: center;
   margin-bottom: 1.1rem;
+  font-size: 2rem;
 }
 
 #next-word{
@@ -24,7 +25,7 @@ h1{
 
 #kontenjer{
 	width: 300px;
-	height: 300px;
+	height: 240px;
 	margin: 30px auto 30px auto;
 	
 }
@@ -80,4 +81,25 @@ label{
 
 .row{
   margin-left: 5px;
+}
+
+.new-word{
+  text-align: center;
+}
+
+.form-new{
+  margin:auto;
+  margin-bottom: 5rem;
+  margin-top: 3rem;
+}
+
+.back{
+  float: left;
+  font-size:1.5rem;
+  margin-left: 3.5rem;
+  margin-top: 2rem;
+}
+
+.flash-new{
+  background-color: rgba(59, 190, 59,0.4);
 }

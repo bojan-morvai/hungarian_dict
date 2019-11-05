@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="description" content="This is application for practising hungarian words">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Madjarska vazbanka</title>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="ma.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	<!-- <script type="text/javascript" src="reci.js"></script> -->
 	
 <body>
 
 	<h1>Vežbanje reči na srpskom i mađarskom</h1>
 	<div class="row">
-		<div class="col-lg-3 col-md-6 order-2 order-lg-1">
-			<a href='/uputstva'>Pomoc/Uputstva</a>
+		<div class="col-lg-3 col-md-6 order-3 order-lg-1">
+			<% if(currentAdmin){ %>
+				<p>Ulogovani ste kao: <%=currentAdmin.username %></p>
+			<% } %>
+			<a href='/uputstva'>Pomoc/Uputstva</a><br>
+			<a href="/new" class='unos-reci'>Unos nove reči u databazu</a>
 			<p><strong>Koje sve reči želite da uključite u igru?</strong></p>
 				<div id='check-div'>
 			<% for (i in allwords){ %>
@@ -66,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3 order-3">
+		<div class="col-lg-3 order-2">
 			<div id="rezultat">
 				<p>Tačni odgovori: <span id='correct-counter'>0</span></p>
 				<div></div>
@@ -79,7 +86,6 @@
 			<br>
 			<div>Prethodna reč je bila: </div>
 			<div id="last-word"> </div>
-			<a href="/new">Unos nove reči u databazu</a>
 		</div>
 	</div>
 

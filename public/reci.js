@@ -1,3 +1,4 @@
+// If there is problem loading words from DB, this is backup file with some words
 
 let AllWords=[{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array},{category:String,words:Array}];
 // AllWords[0].category='test';

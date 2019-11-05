@@ -1,3 +1,5 @@
+// File to seed DB
+
 All_words.create({
 	category: "imenice",
 	words: [{srpski:"muzika",madjarski:"zene",slika:false},{srpski:"broj",madjarski:"szam",slika:false,br:10},
@@ -186,17 +188,15 @@ All_words.create({
 All_words.create({
 	category: "novo",
 	words: [{srpski:"pitati",madjarski:"kerdezni",slika:false},{srpski:"naci",madjarski:"talalni",slika:false},
-    {srpski:"stajati",madjarski:"allni",slika:false},{srpski:"nekoliko",madjarski:"nehany",slika:false},
+    {srpski:"stajati",madjarski:"allni",slika:false},
     {srpski:"ostati",madjarski:"maradni",slika:false},{srpski:"pravo",madjarski:"egyenesen",slika:false},
     {srpski:"skrenuti",madjarski:"lefordulni",slika:false},{srpski:"dati",madjarski:"adni",slika:false},
-    {srpski:"hodnik",madjarski:"folyoso",slika:false},{srpski:"brod",madjarski:"hajo",slika:false},
     {srpski:"ustati",madjarski:"kelni",slika:false},{srpski:"prolece",madjarski:"tavasz",slika:false},
     {srpski:"leto",madjarski:"nyar",slika:false},{srpski:"jesen",madjarski:"osz",slika:false},
     {srpski:"zima",madjarski:"tel",slika:false},{srpski:"zauzet",madjarski:"elfoglalt",slika:false},
     {srpski:"od kad do kad",madjarski:"mettol meddig",slika:false},
     {srpski:"pocinje",madjarski:"kezdodik",slika:false},{srpski:"zavrsava se",madjarski:"fejezodik",slika:false},
-    {srpski:"kasno",madjarski:"keso",slika:false},
-    {srpski:"rano",madjarski:"koran",slika:false},{srpski:"nazalost",madjarski:"sajnos",slika:false},
+    {srpski:"kasno",madjarski:"keso",slika:false},{srpski:"nazalost",madjarski:"sajnos",slika:false},
     {srpski:"zao mi je",madjarski:"sajnalom",slika:false},
     {srpski:"zaista",madjarski:"tenyleg",slika:false},{srpski:"sigurno",madjarski:"biztos",slika:false},
     {srpski:"naravno",madjarski:"persze",slika:false},{srpski:"situacija",madjarski:"helyzet",slika:false},

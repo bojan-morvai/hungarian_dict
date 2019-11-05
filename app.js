@@ -1,14 +1,16 @@
-const express = require("express");
-const app = express();
-const mongoose = require('mongoose');
-const bodyParser = require("body-parser");
-const methodOverride = require("method-override");
+const 	express = require("express"),
+ 		session = require('express-session'),
+ 		cookieParser = require('cookie-parser'),
+ 		flash = require("connect-flash"),
+ 		mongoose = require('mongoose'),
+ 		bodyParser = require("body-parser"),
+ 		methodOverride = require("method-override"),
+		app = express();
 
-const module_words_local = require('./public/reci')
-let Local_words = module_words_local.get_words_local();
-const Admin = require("./models/admin");
-const All_words = require("./models/words");
-
+const 	module_words_local = require('./public/reci'),
+ 		Local_words = module_words_local.get_words_local(),
+		Admin = require("./models/admin"),
+ 		All_words = require("./models/words");
 
 // Password configuration
 const passport = require("passport");
@@ -26,17 +28,25 @@ mongoose.connect('mongodb+srv://Bojan:klisaklisa@cluster0-rfxxc.mongodb.net/madj
 });
 mongoose.set('useFindAndModify', false);
 
-// Password configuration
-app.use(require("express-session")({
+app.use(session({
     secret: "vanja",
     resave: false,
-    saveUninitialized: false
+	saveUninitialized: false,
+	maxAge: 100000
 }));
+
+// Password configuration
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(Admin.authenticate()));
 passport.serializeUser(Admin.serializeUser());
 passport.deserializeUser(Admin.deserializeUser());
+//
+
+//Flash messages configuration
+app.use(cookieParser('vanja'));
+app.use(session({cookie: { maxAge: 60000 },resave:false,saveUninitialized:false,secret:'vanja'}));
+app.use(flash());
 //
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -46,27 +56,24 @@ app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
 app.use(function(req, res, next){
-    currentAdmin = req.admin;
-	console.log("asdasd: "+ currentUser)
+	currentAdmin = req.user;
     next();
 });
 
+// Create administrator that can enter new words in DB
+function create_admin(){
+	const newAdmin = new Admin({username:'bojan'})
+	Admin.register(newAdmin, 'morvai', function(err,admin){
+		if(err){
+			console.log(err);
+		}else{
+			passport.authenticate('local');
+			console.log('Created Admin')
+		}
+	});
+}
 
-// Skup= mongoose.model("Admin",AllWordsSchema)
-// Admin.create({
-//     username: "Bojan",
-//     password: "bojanklisa"
-// })
-
-// All_words.create({
-// 	category: "imenice",
-// 	words: [{srpski:'bioskop',madjarski:'mozi'},{srpski:'crkva',madjarski:'templom'}]
-// })
-
-// All_words.create({
-// 	category: "namirnice",
-// 	words: [{srpski:'sir',madjarski:'sajt'},{srpski:'mleko',madjarski:'tej'}]
-// })
+// create_admin()
 
 // All_words.create({
 // 	category: "test",
@@ -81,29 +88,40 @@ app.get('/',(req,res) =>{
 	All_words.find({},function(err,allwords){
 		if(err){
 			alert('Error connecting to db, establishing link to local db...');
-			res.render('home',{allwords:Local_words});
+			res.render('home',{allwords:Local_words,currentAdmin});
 		}else{
-			res.render('home',{allwords});
+			res.render('home',{allwords,currentAdmin});
 		}
 	});
 });
 
-app.get('/get/words',function(req,res){
+// Route for AJAX request inside script.js
+app.get('/get/words',(req,res)=>{
 	All_words.find({},function(err,allwords){
 		if(err){
 			alert('Error connecting to db, establishing link to local db...');
 			res.send(Local_words);
 		}
 	  res.send(allwords);
-	})
+	});
 });
 
-app.get('/new', (req,res)=>{
+app.get('/login', (req,res)=>{
+	res.render('login')
+});
+
+app.post('/login',passport.authenticate('local',{
+	successRedirect: "/new",
+	failureRedirect: "/login"
+}), (req,res)=>{
+});
+
+app.get('/new', isLoggedIn, (req,res)=>{
 	All_words.find({},function(err,allwords){
 		if(err){
 			res.send('ERROR FINDING DB!');
 		}else{
-			res.render('update',{allwords});
+			res.render('update',{allwords,message:req.flash('added')});
 		}
 	});
 });
@@ -129,6 +147,7 @@ app.put('/new', (req,res)=>{
 								if(err){
 									res.send('Error updating "novo" category');
 								}else{
+									req.flash('added', 'Added new word to database!')
 									res.redirect('/new')
 								}
 							});
@@ -140,9 +159,16 @@ app.put('/new', (req,res)=>{
 	});
 });
 
-const hostname = process.env.IP || '127.0.0.1';
-const port = process.env.PORT || 3000;
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+	}
+    res.redirect("/login");
+}
+
+const hostname = process.env.IP;// || '127.0.0.1';
+const port = process.env.PORT;// || 3000;
 
 app.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
-  });
+});

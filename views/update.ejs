@@ -6,13 +6,14 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="ma.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	
-<body>
+<body class='new-word'>
 
-<h1>Unos u databazu</h1>
+<h1>Unos u bazu podataka</h1>
+<h4 class='flash-new'><%=message%></h4>
 
-<form action="/new?_method=PUT" method="POST">
+<form action="/new?_method=PUT" method="POST" class='form-new'>
     <label for="kategorija">Kategorija:</label>
     <select name="kategorija" id="kategorija">
         <option value="imenice">Imenice</option>
@@ -38,6 +39,8 @@
     <button id='search-btn'>Trazi</button>
     <br>
 </div>
+
+<a href="/" class='back'>Nazad na vežbanku</a>
 
 <script type="text/javascript" src="script_update.js"></script>
 </body>
