@@ -324,7 +324,7 @@ function counter_answers(word){
 			}
 		});
 	});
-	if(guessed_correct_answers.length===game_words.length*3){
+	if(guessed_correct_answers.length===game_words.length*3-1){
 		return false;
 	}else{
 		return true;
