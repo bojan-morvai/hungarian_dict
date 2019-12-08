@@ -23,5 +23,25 @@ There are several parts:
 
 Order of sections is changed on mobile sizes.
 
+# Features
+- Choosing from different categories of words
+- Turn on and off any category of words during game
+- If no category of words is selected, game stops
+- Choosing on which language to answer
+- Instructions in serbian
+- All done on one page without reloading
+- Messages and icons appear to notify if user guessed correctly or incorrectly
+- If user wants to move to the next word, button for skipping the current word
+- When current guess have two missplaced, wrong or less letters, notification that user is close to correct answer
+- Counter of correct and wrong answers, and button to restart it
+- Help section - on mouse hover shows first letter of solution
+- Showing of previous word and it's translation
+- When guessed correctly specific word three times, that word is removed from game
+- If all words from selected categories are guessed correctly three times, that category becomes unavailable until page reloads
+- All words are fetched from MongoDB Atlas, if there is some error accessing db, some words are available locally
+- Possibility to enter new words to DB, through login - username: bojan, password: morvai
+- Search for existing word in db on enter new word page
+- When new word is added to appropriate category, it's also added to 'new' ('novo') category
+
 
 
