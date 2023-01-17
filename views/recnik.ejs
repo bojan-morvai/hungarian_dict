@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Madjarska vazbanka</title>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+<body class='drugibodi'>
+    <div class='container'>
+        <a href='/' class='btn btn-large btn-primary'>Nazad na vežbanku</a><br>
+        <h3>Recnik</h3>
+        <div id='check-div'>
+			<% for (let i in allwords){ %>
+				<% let kategorija_=undefined; %>
+				<% const allowed=["pridevi","namirnice","mesta","predlozi_i_prefiksi","prilozi_i_veznici","glagoli","brojevi","imenice","novo","test"]; %>
+				<% if (allowed.includes(allwords[i].category)){ %>
+				<%		if(allwords[i].category==="predlozi_i_prefiksi"){ %>
+				<%			kategorija_="predlozi i prefiksi"	%>
+				<%		}										%>
+				<%		if(allwords[i].category==="prilozi_i_veznici"){   %>
+				<%		 	kategorija_="prilozi i veznici"		%>
+				<%		}										%>
+				<%		if(allwords[i].category==="reci"){		%>
+				<%			kategorija_="ostale vrste reči"		%>
+				<%		}										%>
+		
+				
+						<h4><%= kategorija_ || allwords[i].category %></h4>		
+                        <% for(let j in allwords[i].words){         %>
+                            <span><%= allwords[i].words[j].srpski %> - </span>
+                            <span><%= allwords[i].words[j].madjarski %></span>
+                            <br>
+                        <% }                                        %>
+					<% } %>
+			<% } %>
+				</div>
+
+</body>
+</html>

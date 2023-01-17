@@ -84,6 +84,17 @@ app.get("/uputstva", (req, res) =>{
     res.render("uputstva");
 });
 
+app.get('/recnik',(req,res) =>{
+	All_words.find({},function(err,allwords){
+		if(err){
+			alert('Error connecting to db, establishing link to local db...');
+			res.render('recnik',{allwords:Local_words,currentAdmin});
+		}else{
+			res.render('recnik',{allwords,currentAdmin});
+		}
+	});
+});
+
 app.get('/',(req,res) =>{
 	All_words.find({},function(err,allwords){
 		if(err){
